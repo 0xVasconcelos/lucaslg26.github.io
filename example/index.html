@@ -1,134 +1,141 @@
 <html>
 
 <head>
-   <meta charset="utf-8">
+  <meta charset="utf-8">
 
-      <title>Flowplayer · hlsjs plugin</title>
+  <title>Flowplayer · hlsjs plugin</title>
 
-   <!-- optimize mobile versions -->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- optimize mobile versions -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <!-- The "minimalist" skin - choose from: "functional.css", "minimalist.css", "playful.css" -->
-   <link rel="stylesheet" href="//releases.flowplayer.org/6.0.5/skin/minimalist.css">
-      <!-- the quality selector stylesheet -->
-   <link rel="stylesheet" href="//releases.flowplayer.org/quality-selector/flowplayer.quality-selector.css">
+  <!-- The "minimalist" skin - choose from: "functional.css", "minimalist.css", "playful.css" -->
+  <link rel="stylesheet" href="//releases.flowplayer.org/6.0.5/skin/minimalist.css">
+  <!-- the quality selector stylesheet -->
+  <link rel="stylesheet" href="//releases.flowplayer.org/quality-selector/flowplayer.quality-selector.css">
 
-   <!-- Minimal styling for this standalone page, can be removed -->
-   <link rel="stylesheet" href="http://demos.flowplayer.org/media/css/demo.css">
-   <!-- Syntax highlighting of source code, can be removed -->
-   <link rel="stylesheet" href="http://demos.flowplayer.org/media/css/pygments.css">
+  <!-- Minimal styling for this standalone page, can be removed -->
+  <link rel="stylesheet" href="http://demos.flowplayer.org/media/css/demo.css">
+  <!-- Syntax highlighting of source code, can be removed -->
+  <link rel="stylesheet" href="http://demos.flowplayer.org/media/css/pygments.css">
 
-<style>
-#hlsjsvod {
-  background-image: url(//drive.cdn.flowplayer.org/202777/84049-snap.jpg);
-}
-#hlsjslive {
-  background-color: #2f2f4f;
-}
+  <style>
+    #hlsjsvod {
+      background-image: url(//drive.cdn.flowplayer.org/202777/84049-snap.jpg);
+    }
 
-.hlsjs-supported {
-  font-weight: bold;
-}
-</style>
+    #hlsjslive {
+      background-color: #2f2f4f;
+    }
 
-         <!-- Flowplayer library -->
-   <script src="//releases.flowplayer.org/6.0.5/flowplayer.min.js"></script>
-         <!-- The hlsjs plugin for playback of HLS without Flash in modern browsers -->
-   <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
-            <!-- the quality selector plugin -->
-   <script src="//releases.flowplayer.org/quality-selector/flowplayer.quality-selector.min.js"></script>
+    .hlsjs-supported {
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- Flowplayer library -->
+  <script src="//releases.flowplayer.org/6.0.5/flowplayer.min.js"></script>
+  <!-- The hlsjs plugin for playback of HLS without Flash in modern browsers -->
+  <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
+  <!-- the quality selector plugin -->
+  <script src="//releases.flowplayer.org/quality-selector/flowplayer.quality-selector.min.js"></script>
 
 
-<script>
-window.onload = function () {
+  <script>
+    window.onload = function () {
 
-  flowplayer("#hlsjsvod", {
-    splash: true,
-    embed: false, // setup would need iframe embedding
-    ratio: 5/12,
+      flowplayer("#hlsjsvod", {
+        splash: true,
+        embed: false, // setup would need iframe embedding
+        ratio: 5 / 12,
 
-    // manual HLS level selection
-    hlsQualities: [1, 3, 6, 7],
+        // manual HLS level selection
+        hlsQualities: [1, 3, 6, 7],
 
-    // manual VOD quality selection when hlsjs is not supported
-    defaultQuality: "260p",
-    qualities: ["160p", "260p", "530p", "800p"],
+        // manual VOD quality selection when hlsjs is not supported
+        defaultQuality: "260p",
+        qualities: ["160p", "260p", "530p", "800p"],
 
-    clip: {
-      sources: [
-        { type: "application/x-mpegurl",
-          src:  "//cdn.flowplayer.org/202777/84049-bauhaus.m3u8" },
-        { type: "video/webm",
-          src:  "//cdn.flowplayer.org/202777/84049-bauhaus.webm" },
-        { type: "video/mp4",
-          src:  "//cdn.flowplayer.org/202777/84049-bauhaus.mp4" }
+        clip: {
+          sources: [
+            {
+              type: "application/x-mpegurl",
+              src: "//cdn.flowplayer.org/202777/84049-bauhaus.m3u8"
+            },
+            {
+              type: "video/webm",
+              src: "//cdn.flowplayer.org/202777/84049-bauhaus.webm"
+            },
+            {
+              type: "video/mp4",
+              src: "//cdn.flowplayer.org/202777/84049-bauhaus.mp4"
+            }
       ]
-    }
+        }
 
-  /* event listeners for demo purposes, omit in production */
-  }).on("ready", function (e, api, video) {
-    var engineName = api.engine.engineName;
+        /* event listeners for demo purposes, omit in production */
+      }).on("ready", function (e, api, video) {
+        var engineName = api.engine.engineName;
 
-    document.getElementById("engine").innerHTML = engineName;
-    document.getElementById("vtype").innerHTML = video.type;
-    if (engineName !== "hlsjs") {
-      document.getElementById("detail").innerHTML = "video source: " + video.src;
-    }
+        document.getElementById("engine").innerHTML = engineName;
+        document.getElementById("vtype").innerHTML = video.type;
+        if (engineName !== "hlsjs") {
+          document.getElementById("detail").innerHTML = "video source: " + video.src;
+        }
 
-  }).on("progress", function (e, api) {
-    var hlsengine = api.engine.hlsjs,
-        current;
+      }).on("progress", function (e, api) {
+        var hlsengine = api.engine.hlsjs,
+          current;
 
-    if (hlsengine) {
-      current = hlsengine.currentLevel;
+        if (hlsengine) {
+          current = hlsengine.currentLevel;
 
-      document.getElementById("detail").innerHTML = "HLS level " + (current > -1
-          ? current + ": " + hlsengine.levels[current].height + "p"
-          : "");
-    }
-  /* end demo event listeners */
+          document.getElementById("detail").innerHTML = "HLS level " + (current > -1 ? current + ": " + hlsengine.levels[current].height + "p" : "");
+        }
+        /* end demo event listeners */
 
-  });
+      });
 
 
-  flowplayer("#hlsjslive", {
-    splash: true,
-    embed: false,
-    ratio: 9/16,
+      flowplayer("#hlsjslive", {
+        splash: true,
+        embed: false,
+        ratio: 9 / 16,
 
-    clip: {
-      live: true,
-      sources: [
-        { type: "application/x-mpegurl",
-          src: "http://wms.shared.streamshow.it/canale8/canale8/playlist.m3u8" }
+        clip: {
+          live: true,
+          sources: [
+            {
+              type: "application/x-mpegurl",
+              src: "http://ei.ss-beth.eiplus.com.br/live/smil:Evento3.smil/playlist.m3u8"
+            }
       ]
-    }
+        }
 
-  });
+      });
 
-};
-</script>
+    };
+  </script>
 
 </head>
 
 <body>
 
-   <div id="content">
+  <div id="content">
 
-      <h1>Flowplayer · hlsjs plugin</h1>
+    <h1>Flowplayer · hlsjs plugin</h1>
 
-<h2 id="vod">VOD</h2>
+    <h2 id="vod">VOD</h2>
 
-<div id="hlsjsvod" class="is-closeable"></div>
+    <div id="hlsjsvod" class="is-closeable"></div>
 
-<div class="info">
-  <p>player engine: <span id="engine"></span></p>
+    <div class="info">
+      <p>player engine: <span id="engine"></span></p>
 
-  <p>video type: <span id="vtype"></span></p>
+      <p>video type: <span id="vtype"></span></p>
 
-  <p id="detail">&nbsp;</p>
-</div>
+      <p id="detail">&nbsp;</p>
+    </div>
 
-<h2 id="live">Live</h2>
+    <h2 id="live">Live</h2>
 
-<div id="hlsjslive" class="is-closeable"></div>
+    <div id="hlsjslive" class="is-closeable"></div>
