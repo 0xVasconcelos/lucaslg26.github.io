@@ -12,4 +12,29 @@
  }
 </script>
 
-<video id="video" controls autoplay class="videoCentered"></video>
+
+    <video id="video" controls autoplay class="videoCentered"></video><br>
+    <canvas id="buffered_c" height="15" class="videoCentered" onclick="buffered_seek(event);"></canvas><br><br>
+    <pre id="HlsStatus" class="center" style="white-space: pre-wrap;"></pre>
+
+    <div class="center" id="toggleButtons">
+      <button type="button" class="btn btn-sm" onclick="$('#PlaybackControl').toggle();">toggle playback controls</button>
+      <button type="button" class="btn btn-sm" onclick="$('#QualityLevelControl').toggle();">toggle Quality Level controls</button>
+      <button type="button" class="btn btn-sm" onclick="$('#MetricsDisplay').toggle();toggleMetricsDisplay();">toggle Metrics Display</button>
+      <button type="button" class="btn btn-sm" onclick="$('#StatsDisplay').toggle();">toggle Stats Display</button>
+    </div>
+
+    <div id='PlaybackControl'>
+    <h4> Playback Control </h4>
+      <button type="button" class="btn btn-sm btn-info" onclick="$('#video')[0].play()">play</button>
+      <button type="button" class="btn btn-sm btn-info" onclick="$('#video')[0].pause()">pause</button>
+      <button type="button" class="btn btn-sm btn-info" onclick="$('#video')[0].currentTime+=10">currentTime+=10</button>
+      <button type="button" class="btn btn-sm btn-info" onclick="$('#video')[0].currentTime-=10">currentTime-=10</button>
+      <button type="button" class="btn btn-sm btn-info" onclick="$('#video')[0].currentTime=$('#seek_pos').val()">seek to </button>
+       <input type="text" id='seek_pos' size="8" onkeydown="if(window.event.keyCode=='13'){$('#video')[0].currentTime=$('#seek_pos').val();}"><br><br>
+      <button type="button" class="btn btn-xs btn-warning" onclick="hls.attachMedia($('#video')[0])">attach Video</button>
+      <button type="button" class="btn btn-xs btn-warning" onclick="hls.detachMedia()">detach Video</button><br>
+      <button type="button" class="btn btn-xs btn-warning" onclick="hls.startLoad()">start Load</button>
+      <button type="button" class="btn btn-xs btn-warning" onclick="hls.stopLoad()">stop Load</button>
+      <button type="button" class="btn btn-xs btn-warning" onclick="hls.recoverMediaError()">recover Media Error</button><br>
+    </div>
