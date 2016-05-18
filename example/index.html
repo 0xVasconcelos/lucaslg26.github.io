@@ -4,7 +4,7 @@
   if(Hls.isSupported()) {
     var video = document.getElementById('video');
     var hls = new Hls();
-    hls.loadSource('http://www.streambox.fr/playlists/test_001/stream.m3u8');
+    hls.loadSource('https://api.contentgate.go.com/mCGate/v2/secure/espni/e3_vdms/ZXNwbjMvYXV0aC93YXRjaGVzcG4vc3RhcnRTZXNzaW9uP3NpbXVsY2FzdEFpcmluZ0lkPW4yMGEmY2hhbm5lbD1lc3BuMyZwbGF5YmFja1NjZW5hcmlvPUhUVFBfQ0xPVURfTU9CSUxFJnBsYXllcklkPWlvcyZwa2FuPVNFVF9NRSZpZGVudGl0eVBvaW50SWQ9U0VUX01FJnBhcnRuZXJDb250ZW50SWQ9MjY2Mzc2MA/video.m3u8?oauth_token=ynFTGnB_CWjxAvZn2dFL4Q');
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED,function() {
       video.play();
