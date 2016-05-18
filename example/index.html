@@ -1,23 +1,6 @@
 <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.min.js"></script>
 <video id="video"></video>
-<script>
-  if(Hls.isSupported()) {
-    var video = document.getElementById('video');
-    var hls = new Hls();
-    hls.loadSource('https://api.contentgate.go.com/mCGate/v2/secure/espni/e3_vdms/ZXNwbjMvYXV0aC93YXRjaGVzcG4vc3RhcnRTZXNzaW9uP3NpbXVsY2FzdEFpcmluZ0lkPW4yMGEmY2hhbm5lbD1lc3BuMyZwbGF5YmFja1NjZW5hcmlvPUhUVFBfQ0xPVURfTU9CSUxFJnBsYXllcklkPWlvcyZwa2FuPVNFVF9NRSZpZGVudGl0eVBvaW50SWQ9U0VUX01FJnBhcnRuZXJDb250ZW50SWQ9MjY2Mzc2MA/video.m3u8?oauth_token=ynFTGnB_CWjxAvZn2dFL4Q');
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED,function() {
-      video.play();
-  });
- }
-</script>
-
-
-    <video id="video" controls autoplay class="videoCentered"></video><br>
-    <canvas id="buffered_c" height="15" class="videoCentered" onclick="buffered_seek(event);"></canvas><br><br>
-    <pre id="HlsStatus" class="center" style="white-space: pre-wrap;"></pre>
-
-    <div class="center" id="toggleButtons">
+<div class="center" id="toggleButtons">
       <button type="button" class="btn btn-sm" onclick="$('#PlaybackControl').toggle();">toggle playback controls</button>
       <button type="button" class="btn btn-sm" onclick="$('#QualityLevelControl').toggle();">toggle Quality Level controls</button>
       <button type="button" class="btn btn-sm" onclick="$('#MetricsDisplay').toggle();toggleMetricsDisplay();">toggle Metrics Display</button>
@@ -38,3 +21,18 @@
       <button type="button" class="btn btn-xs btn-warning" onclick="hls.stopLoad()">stop Load</button>
       <button type="button" class="btn btn-xs btn-warning" onclick="hls.recoverMediaError()">recover Media Error</button><br>
     </div>
+
+<script>
+  if(Hls.isSupported()) {
+    var video = document.getElementById('video');
+    var hls = new Hls();
+    hls.loadSource('https://api.contentgate.go.com/mCGate/v2/secure/espni/e3_vdms/ZXNwbjMvYXV0aC93YXRjaGVzcG4vc3RhcnRTZXNzaW9uP3NpbXVsY2FzdEFpcmluZ0lkPW4yMGEmY2hhbm5lbD1lc3BuMyZwbGF5YmFja1NjZW5hcmlvPUhUVFBfQ0xPVURfTU9CSUxFJnBsYXllcklkPWlvcyZwa2FuPVNFVF9NRSZpZGVudGl0eVBvaW50SWQ9U0VUX01FJnBhcnRuZXJDb250ZW50SWQ9MjY2Mzc2MA/video.m3u8?oauth_token=ynFTGnB_CWjxAvZn2dFL4Q');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      video.play();
+  });
+ }
+</script>
+
+
+
