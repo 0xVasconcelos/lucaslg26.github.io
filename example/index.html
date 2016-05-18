@@ -1,77 +1,48 @@
 <html>
-
 <head>
   <meta charset="utf-8">
-
   <title>Flowplayer · hlsjs plugin</title>
-
-  <!-- optimize mobile versions -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- The "minimalist" skin - choose from: "functional.css", "minimalist.css", "playful.css" -->
   <link rel="stylesheet" href="//releases.flowplayer.org/6.0.5/skin/minimalist.css">
-  <!-- the quality selector stylesheet -->
   <link rel="stylesheet" href="//releases.flowplayer.org/quality-selector/flowplayer.quality-selector.css">
-
-  <!-- Minimal styling for this standalone page, can be removed -->
   <link rel="stylesheet" href="http://demos.flowplayer.org/media/css/demo.css">
-  <!-- Syntax highlighting of source code, can be removed -->
   <link rel="stylesheet" href="http://demos.flowplayer.org/media/css/pygments.css">
-
   <style>
     #hlsjsvod {
       background-image: url(//drive.cdn.flowplayer.org/202777/84049-snap.jpg);
     }
-
     #hlsjslive {
-      background-color: #2f2f4f;
+      background-image: url(//drive.cdn.flowplayer.org/202777/84049-snap.jpg);
     }
-
     .hlsjs-supported {
       font-weight: bold;
     }
   </style>
-
-  <!-- Flowplayer library -->
   <script src="//releases.flowplayer.org/6.0.5/flowplayer.min.js"></script>
-  <!-- The hlsjs plugin for playback of HLS without Flash in modern browsers -->
   <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
-  <!-- the quality selector plugin -->
   <script src="//releases.flowplayer.org/quality-selector/flowplayer.quality-selector.min.js"></script>
 
-
   <script>
-    window.onload = function () {
-
-      flowplayer("#hlsjslive", {
-        splash: true,
-        embed: false,
-        ratio: 9 / 16,
-
-        clip: {
-          live: true,
-          sources: [
-            {
-              type: "application/x-mpegurl",
-              src: "http://ei.ss-beth.eiplus.com.br/live/smil:Evento3.smil/playlist.m3u8"
-            }
-      ]
-        }
-
-      });
-
-    };
-  </script>
-
+  window.onload = function () {
+    flowplayer("#hlsjslive", {
+      splash: true,
+      embed: false,
+      ratio: 9 / 16,
+      clip: {
+        live: true,
+        sources: [
+          {
+            type: "application/x-mpegurl",
+            src: "http://ei.ss-beth.eiplus.com.br/live/smil:Evento3.smil/chunklist_b350000.m3u8"
+          }
+        ]
+      }
+    });
+  };
+</script>
 </head>
-
 <body>
-
   <div id="content">
-
-    <h1>Flowplayer · hlsjs plugin</h1>
-
-
+    <h1>PardindiosTV</h1>
     <h2 id="live">EI MAXX</h2>
-
     <div id="hlsjslive" class="is-closeable"></div>
