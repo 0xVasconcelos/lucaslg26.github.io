@@ -6,7 +6,7 @@
 
   <link href="http://vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
   <script src="http://vjs.zencdn.net/4.12/video.js"></script>
-   <script src="https://github.com/videojs/videojs-contrib-media-sources/releases/download/v0.1.0/videojs-media-sources.js"></script>
+ <script src="https://github.com/videojs/videojs-contrib-media-sources/releases/download/v0.1.0/videojs-media-sources.js"></script>
   <script src="https://github.com/videojs/videojs-contrib-hls/releases/download/v0.11.2/videojs.hls.min.js"></script>
 
 </head>
@@ -15,10 +15,11 @@
 
   <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="268"
   data-setup='{}'>
-    <source src="http://ei.ss-beth.eiplus.com.br/live/smil:Evento3.smil/playlist.m3u8" type='application/x-mpegURL'>
+    <source src="http://iphone-streaming.ustream.tv/uhls/3064708/streams/live/iphone/playlist.m3u8" type='application/x-mpegURL'>
   </video>
 
   <script>
+  var player = videojs('my_video_1');
   </script>
 
 </body>
