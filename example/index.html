@@ -14,6 +14,14 @@
     .hlsjs-supported {
       font-weight: bold;
     }
+    .flowplayer .fp-logo {
+  /* logo always visible, even on origin domain */
+  display: block;
+  opacity: 1 !important;
+
+  left: auto; /* avoid logo being stuck on left side */
+  right: 3%;
+}
   </style>
   <script src="//releases.flowplayer.org/6.0.5/flowplayer.min.js"></script>
   <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
